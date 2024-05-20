@@ -413,7 +413,7 @@ const showModal = ref(false);
           </td> -->
           </tr>
           <tr v-if="showFilter">
- <td colspan="9">
+    <td colspan="9">
     <select v-model="idParameter">
       <option v-for="id in uniqueIdParameters" :key="id" :value="id">
         {{ id }}

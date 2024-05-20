@@ -5,6 +5,32 @@ import gql from 'graphql-tag';
 import { parseISO, format } from 'date-fns';
 import { ref, reactive, computed, watchEffect } from 'vue';
 
+// const totalItems = computed(() => datasourses.value.length); // Общее количество элементов в таблице
+// const displayedItems = computed(() => paginatedDatasourses.value.length); // Количество отображаемых элементов
+// const filteredItems = computed(() => sortedDatasourses.value.length); // Количество отфильтрованных элементов
+
+// const itemsPerPage = 14; // Количество элементов на странице
+// const currentPage = ref(1); // Текущая страница
+// const totalPages = computed(() => Math.ceil(datasourses.value.length / itemsPerPage)); // Общее количество страниц
+
+// function previousPage() {
+//  if (currentPage.value > 1) {
+//     currentPage.value--;
+//  }
+// }
+
+// function nextPage() {
+//  if (currentPage.value < totalPages.value) {
+//     currentPage.value++;
+//  }
+// }
+
+// const paginatedDatasourses = computed(() => {
+//  const start = (currentPage.value - 1) * itemsPerPage;
+//  const end = start + itemsPerPage;
+//  return sortedDatasourses.value.slice(start, end);
+// });
+
 const props = defineProps({
  parameter: Object,
 });
@@ -356,6 +382,16 @@ const showModal_ds_ = ref(false);
              </tr>
            </tbody>
          </table>
+         <!-- <div class="pagination" style="width:100%;">
+        <div>
+        <span style="margin-right: 10px;">Всего элементов: {{ totalItems }}</span>
+        <span style="margin-right: 10px;">Отображаемых элементов: {{ displayedItems }}</span>
+        <span style="margin-right: 10px;" v-if="showFilter">Отфильтрованных элементов: {{ filteredItems }}</span>
+        <button class="btn btn-secondary" style="margin-right: 10px;" @click="previousPage">Предыдущая</button>
+        <span>Страница {{ currentPage }} из {{ totalPages }}</span>
+        <button class="btn btn-secondary" style="margin-left: 10px;" @click="nextPage">Следующая</button>
+        </div>
+        </div> -->
          <div v-if="showModal_ds" class="modal">
  <div class="modal-content">
   <span class="close" @click="showModal_ds= false">&times;</span>

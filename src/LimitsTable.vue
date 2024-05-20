@@ -5,6 +5,32 @@ import gql from 'graphql-tag';
 import { parseISO, format } from 'date-fns';
 import { ref, reactive, computed, watchEffect } from 'vue';
 
+// const totalItems = computed(() => limits.value.length); // Общее количество элементов в таблице
+// const displayedItems = computed(() => paginatedLimits.value.length); // Количество отображаемых элементов
+// const filteredItems = computed(() => sortedLimits.value.length); // Количество отфильтрованных элементов
+
+// const itemsPerPage = 14; // Количество элементов на странице
+// const currentPage = ref(1); // Текущая страница
+// const totalPages = computed(() => Math.ceil(limits.value.length / itemsPerPage)); // Общее количество страниц
+
+// function previousPage() {
+//  if (currentPage.value > 1) {
+//     currentPage.value--;
+//  }
+// }
+
+// function nextPage() {
+//  if (currentPage.value < totalPages.value) {
+//     currentPage.value++;
+//  }
+// }
+
+// const paginatedLimits = computed(() => {
+//  const start = (currentPage.value - 1) * itemsPerPage;
+//  const end = start + itemsPerPage;
+//  return sortedLimits.value.slice(start, end);
+// });
+
 const props = defineProps({
  parameter: Object,
 });
@@ -406,6 +432,16 @@ const showModal_limit_ = ref(false);
              </tr>
            </tbody>
          </table>
+        //  <div class="pagination" style="width:100%;">
+        // <div>
+        // <span style="margin-right: 10px;">Всего элементов: {{ totalItems }}</span>
+        // <span style="margin-right: 10px;">Отображаемых элементов: {{ displayedItems }}</span>
+        // <span style="margin-right: 10px;" v-if="showFilter">Отфильтрованных элементов: {{ filteredItems }}</span>
+        // <button class="btn btn-secondary" style="margin-right: 10px;" @click="previousPage">Предыдущая</button>
+        // <span>Страница {{ currentPage }} из {{ totalPages }}</span>
+        // <button class="btn btn-secondary" style="margin-left: 10px;" @click="nextPage">Следующая</button>
+        // </div>
+        // </div>
          <div v-if="showModal_limit" class="modal">
  <div class="modal-content">
   <span class="close" @click="showModal_limit= false">&times;</span>
