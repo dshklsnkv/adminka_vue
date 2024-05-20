@@ -1,0 +1,248 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 350;
+
+  color-scheme: light dark;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    font-size: 14px;
+} 
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+} 
+
+h2 {
+  margin-left: 5px;
+  font-size: 16px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+#app {
+  width: 200vw; /* 100% ширины окна браузера */
+  height: 100vh; /* 100% высоты окна браузера */
+  text-align: center;
+  /* padding: 1em; */
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.modal {
+ display: block; 
+ position: fixed; /* Остальные стили для модального окна */
+ z-index: 1; /* Стили для модального окна */
+ left: 0;
+ top: 0;
+ width: 100%; /* Ширина модального окна */
+ height: 100%; /* Высота модального окна */
+ overflow: auto; 
+ background-color: rgba(0,0,0,0.4); /* Фон модального окна */
+}
+
+.modal-content {
+ background-color: #fefefe;
+ margin: 10% auto; /* 10% от верхней части экрана */
+ padding: 20px;
+ border: 1px solid #888;
+ width: 30%; /* Ширина содержимого */
+ text-align: left; /* Выравнивание текста по левому краю */
+}
+
+.modal-content label, .modal-content input {
+ display: block; /* Блочное отображение для выравнивания полей по левому краю */
+ margin-bottom: 7px; /* Отступ снизу для улучшения читаемости */
+}
+
+.modal-content input {
+ width: 100%; /* Ширина полей ввода */
+ padding: 5px; /* Отступ внутри полей ввода */
+ box-sizing: border-box; /* Включает padding и border в общий размер элемента */
+}
+
+.modal-content button {
+ background-color: #007bff; /* Цвет кнопки */
+ color: #fff; /* Цвет текста кнопки */
+ border: none; /* Удаление границы */
+ padding: 10px 20px; /* Отступ внутри кнопки */
+ cursor: pointer; /* Изменение курсора на указатель при наведении */
+ margin-top: 10px; /* Отступ сверху для кнопки */
+}
+.modal-content button:hover {
+ background-color: #0056b3; /* Цвет кнопки при наведении */
+}
+.close {
+ color: #aaa;
+ float: right;
+ font-size: 28px;
+ font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+ color: rgb(238, 12, 12);
+ text-decoration: none;
+ cursor: pointer;
+}
+.table {
+    border-collapse: collapse;
+    table-layout: auto;
+ }
+ .table th, .table td {
+    padding: 3px;
+    border: 1px solid #ddd;
+    text-align: left;
+    color: #000000;
+    white-space: nowrap; /* Предотвращает перенос текста */
+    overflow: hidden; /* Обрезает текст, если он слишком длинный */
+ }
+.table th:nth-child(1), .table td:nth-child(1),
+.table th:nth-child(2), .table td:nth-child(2),
+.table th:nth-child(3), .table td:nth-child(3),
+.table th:nth-child(4), .table td:nth-child(4),
+.table th:nth-child(5), .table td:nth-child(5),
+.table th:nth-child(6), .table td:nth-child(6),
+.table th:nth-child(7), .table td:nth-child(7),
+.table th:nth-child(8), .table td:nth-child(8) {
+    min-width: fit-content;
+}
+ .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+ }
+ .table-hover tbody tr:hover {
+    background-color: #ddd;
+ }
+ .btn-small {
+    width: 28px;
+    height: 28px;
+    padding: 1px;
+}
+ .btn-danger {
+    background-color: #ff0000;
+    border-color: #ff0000;
+    color: #fff;
+    margin-right: 5px; 
+ }
+ .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    margin-right: 2px;
+ }
+ .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open>.dropdown-toggle.btn-danger {
+    background-color: #982430; 
+    border-color: #982430; 
+    color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    background-color: #0056b3; /* новый цвет фона при наведении */
+    border-color: #0056b3; /* новый цвет границы при наведении */
+    color: #fff;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Выравнивание кнопок по центру */
+  white-space: nowrap;
+  padding: 10px 0;  /*отступ сверху и снизу */
+  background-color: #0171bb; /*фон для контраста */
+  justify-content: space-between; /* Распределение пространства между элементами */
+  width: 100%;
+}
+
+.buttons-container button {
+  /* flex-grow: 1; Позволяет кнопкам расти и занимать доступное пространство */
+  margin: 0 2px; /* отступы между кнопками для лучшей читаемости */
+ }
+
+.buttons-container button:last-child {
+  margin-right: 5px; /*  отступ справа для последней кнопки */
+ }
+
+.logo {
+  height: 50px; /* высота логотипа */
+  margin-left: 10px;
+  /* margin-bottom: 3px; Отступ снизу, чтобы поднять логотип вверх */
+ }
+
+.tables-container {
+  padding:5px; /* отступ сверху и снизу для таблиц */ 
+}
+ .tables-container table {
+  width: 100%; /* ширина таблицы равной 100% ширины .tables-container */
+  max-width: 100%; /* чтобы таблица не выходила за пределы .tables-container */
+ } 
+ 
+ .buttons-container .title {
+  color: #fff; /* Цвет текста */
+  font-size: 16px; /* Размер шрифта */
+  margin-left: 10px; /* Отступ слева от названия до кнопок */
+  margin-right: 10px; /* Отступ справа от названия до кнопок */
+  font-weight: 500;
+  margin-bottom: -3px; 
+ }
+ @media (min-width: 600px) {
+  .buttons-container {
+     flex-direction: row;
+     justify-content: center; /* Горизонтальное выравнивание кнопок по центру */
+  }
+ }
