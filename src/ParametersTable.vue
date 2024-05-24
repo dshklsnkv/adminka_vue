@@ -8,6 +8,26 @@ import { ref, reactive, computed, watchEffect} from 'vue';
 import ParameterLimits from './LimitsTable.vue';
 import  ParameterDataSourses from './DatasoursesTable.vue';
 
+function findPT(pt) {
+    const pt_ = this.parameters.find(pth => pth.idPhysicalType === pt);
+    return parameters? pt_.PhysicalType [0]?.longName || '' : '';
+  }
+
+  function findMI(mi) {
+    const mi_ = this.parameters.find(miz => miz.idPlaceIzmer === mi);
+    return parameters? mi_.PlaceIzmer [0]?.longName || '' : '';
+  }
+
+  function findSI(si) {
+    const si_ = this.parameters.find(siz => siz.idSredaIzmer === si);
+    return parameters? si_.SredaIzmer [0]?.longName || '' : '';
+  } 
+
+  function findEI(ei) {
+    const ei_ = this.parameters.find(eiz => eiz.idUnits === ei);
+    return parameters? ei_.Units [0]?.longName || '' : '';
+  }
+
 const totalItems = computed(() => parameters.value.length); // Общее количество элементов в таблице
 const displayedItems = computed(() => paginatedParameters.value.length); // Количество отображаемых элементов
 const filteredItems = computed(() => sortedParameters.value.length); // Количество отфильтрованных элементов
@@ -332,16 +352,37 @@ const showModal = ref(false);
           <input id="nameParameter" v-model="newParameter.nameParameter" type="text" required>
 
           <label for="idPhysicalType">Физ. тип:</label>
-          <input id="idPhysicalType" v-model="newParameter.idPhysicalType" type="text" required>
+          <select id="idPhysicalType" v-model="newParameter.idPhysicalType" required class="full-width-select">
+          <option value="">Выберите физический тип</option>
+          <option v-for="pt in uniqueIdPhysicalTypes" :key="pt" :value="pt">
+            {{ findPT(pt)}}
+            </option>
+          </select>
 
           <label for="idPlaceIzmer">Место измер.:</label>
-          <input id="idPlaceIzmer" v-model="newParameter.idPlaceIzmer" type="text" required>
+          <select id="idPlaceIzmer" v-model="newParameter.idPlaceIzmer"required class="full-width-select">
+          <option value="">Выберите место измерения</option>
+          <option v-for="mi in uniqueIdPlaceIzmers" :key="mi" :value="mi">
+            {{ findMI(mi)}}
+            </option>
+          </select>
 
           <label for="idSredaIzmer">Среда измер.:</label>
-          <input id="idSredaIzmer" v-model="newParameter.idSredaIzmer" type="text" required>
+          <select id="idSredaIzmer" v-model="newParameter.idSredaIzmer" required class="full-width-select">
+            <option value="">Выберите среду измерения</option>
+          <option v-for="si in uniqueIdSredaIzmers" :key="si" :value="si">
+            {{ findSI(si)}}
+            </option>
+          </select>
 
           <label for="idUnits">Ед. измер.:</label>
-          <input id="idUnits" v-model="newParameter.idUnits" type="text" required>
+          <select id="idUnits" v-model="newParameter.idUnits" required class="full-width-select">
+            <option value="">Выберите единицы измерения</option>
+          <option v-for="ei in uniqueIdUnits" :key="ei" :value="ei">
+            {{ findEI(ei)}}
+            </option>
+          </select>
+          
 
           <label for="momentBegin">Момент начала:</label>
           <input id="momentBegin" v-model="newParameter.momentBegin" type="text" required>
@@ -426,23 +467,23 @@ const showModal = ref(false);
       </option>
     </select>
     <select v-model="idPhysicalType">
-      <option v-for="type in uniqueIdPhysicalTypes" :key="type" :value="type">
-        {{ type }}
+      <option v-for="pt in uniqueIdPhysicalTypes" :key="pt" :value="pt">
+        {{ findPT(pt)}}
                     </option>
                   </select>
                   <select v-model="idPlaceIzmer">
-                    <option v-for="place in uniqueIdPlaceIzmers" :key="place" :value="place">
-                      {{ place }}
+                    <option v-for="mi in uniqueIdPlaceIzmers" :key="mi" :value="mi">
+                      {{ findMI(mi)}}
                     </option>
                   </select>
                   <select v-model="idSredaIzmer">
-                    <option v-for="sreda in uniqueIdSredaIzmers" :key="sreda" :value="sreda">
-                      {{ sreda }}
+                    <option v-for="si in uniqueIdSredaIzmers" :key="si" :value="si">
+                      {{findSI(si)}}
                     </option>
                   </select>
                   <select v-model="idUnits">
-                    <option v-for="unit in uniqueIdUnits" :key="unit" :value="unit">
-                      {{ unit }}
+                    <option v-for="ei in uniqueIdUnits" :key="ei" :value="ei">
+                      {{ findEI(ei)}}
                     </option>
                   </select>
                   <select v-model="momentBegin" v-if="displaySettings.showMomentBegin">

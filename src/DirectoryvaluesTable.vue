@@ -5,6 +5,10 @@ import gql from 'graphql-tag';
 import { parseISO, format } from 'date-fns';
 import { ref, reactive, computed, watchEffect } from 'vue';
 
+function findDirectoryNameById(id) {
+    const directory = this.directoryvalues.find(dir => dir.idDirectory === id);
+    return directory? directory.DirectoryName[0]?.nameDirectory || '' : '';
+  }
 
 const props = defineProps({
  directory: Number, 
@@ -321,7 +325,7 @@ const showModal_directoryvalue_ = ref(false);
               <td colspan="6">
                   <select v-model="idDirectory">
                     <option v-for="id in uniqueIdDirectories" :key="id" :value="id">
-                      {{ id }}
+                      {{ findDirectoryNameById(id) }}
                     </option>
                   </select>
                   <select v-model="longName">
@@ -374,7 +378,7 @@ const showModal_directoryvalue_ = ref(false);
            </thead>
            <tbody v-if="sortedDirectoryvalues.length">
           <tr v-for="directoryvalue in paginatedDirectoryvalues" :key="directoryvalue.idDirectoryvalue">
-          <td v-if="displaySettingsDirectory.showIdDirectory">{{ directoryvalue.idDirectory }}, {{ directoryvalue.DirectoryName [0].nameDirectory }}</td>
+          <td v-if="displaySettingsDirectory.showIdDirectory">{{ directoryvalue.DirectoryName [0].nameDirectory }}</td>
           <td v-if="displaySettingsDirectory.showLongName">{{ directoryvalue.longName }}</td>
           <td v-if="displaySettingsDirectory.showShortName">{{ directoryvalue.shortName }}</td>
           <td v-if="displaySettingsDirectory.showMomentBegin">{{ formatDateTime(directoryvalue.momentBegin) }}</td>
@@ -417,21 +421,37 @@ const showModal_directoryvalue_ = ref(false);
           <label for="idDirectoryvalue">№:</label>
           <input id="idDirectoryvalue" v-model="newDirectoryvalue.idDirectoryvalue" type="text" required>
 
+          <!-- <label for="idDirectory">Справочник:</label>
+          <input id="idDirectory" v-model="newDirectoryvalue.idDirectory" type="text" required> -->
+
+          <!-- <label for="idDirectory">Справочник:</label>
+          <select id="idDirectory" v-model="newDirectoryvalue.idDirectory" required>
+            <option value="">Выберите справочник</option>
+            <option v-for="dir in directoryvalues" :key="dir.idDirectory" :value="dir.idDirectory">
+              {{ dir.DirectoryName && dir.DirectoryName.length > 0? dir.DirectoryName[0].nameDirectory : '' }}
+            </option>
+          </select> -->
+
           <label for="idDirectory">Справочник:</label>
-          <input id="idDirectory" v-model="newDirectoryvalue.idDirectory" type="text" required>
+          <select id="idDirectory" v-model="newDirectoryvalue.idDirectory" required class="full-width-select">
+            <option value="">Выберите справочник</option>
+            <option v-for="id in uniqueIdDirectories" :key="id" :value="id">
+            {{ findDirectoryNameById(id) }}
+            </option>
+          </select>
 
           <label for="longName">Длинное название:</label>
-          <input id="longName" v-model="newDirectoryvalue.longName" type="text" required>
+      <input id="longName" v-model="newDirectoryvalue.longName" type="text" required>
 
-          <label for="shortName">Короткое название:</label>
-          <input id="shortName" v-model="newDirectoryvalue.shortName" type="text" required>
+      <label for="shortName">Короткое название:</label>
+      <input id="shortName" v-model="newDirectoryvalue.shortName" type="text" required>
 
-          <label for="momentBegin">Момент начала:</label>
-          <input id="momentBegin" v-model="newDirectoryvalue.momentBegin" type="text" required>
+      <label for="momentBegin">Момент начала:</label>
+      <input id="momentBegin" v-model="newDirectoryvalue.momentBegin" type="text" required>
 
-          <label for="momentEnd">Момент конца:</label>
-          <input id="momentEnd" v-model="newDirectoryvalue.momentEnd" type="text" required>
-        <button type="submit">Добавить</button>
+      <label for="momentEnd">Момент конца:</label>
+      <input id="momentEnd" v-model="newDirectoryvalue.momentEnd" type="text" required>
+      <button type="submit">Добавить</button>
       </form>
     </div>
   </div>
@@ -440,3 +460,9 @@ const showModal_directoryvalue_ = ref(false);
  </div>
  </template>
 
+<style>
+.full-width-select {
+    width: 100%;
+    min-height: 35px;
+}
+</style>

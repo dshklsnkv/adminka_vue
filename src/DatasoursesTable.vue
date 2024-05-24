@@ -370,8 +370,8 @@ const showModal_ds_ = ref(false);
            </thead>
            <tbody v-if="sortedDatasourses.length">
            <tr v-for="datasourse in sortedDatasourses" :key="datasourse.idParameterdatasourse">
-                <td v-if="displaySettings.showIdParameter">{{ datasourse.idParameter }}, {{ datasourse.ParameterName[0].nameParameter}}</td>
-                <td v-if="displaySettings.showIdDataSourse">{{ datasourse.idDataSourse }}, {{ datasourse.Istochnik[0].longName }}</td>
+                <td v-if="displaySettings.showIdParameter">{{ datasourse.ParameterName[0].nameParameter}}</td>
+                <td v-if="displaySettings.showIdDataSourse">{{ datasourse.Istochnik[0].longName }}</td>
                 <td v-if="displaySettings.showDataSourseKey">{{ datasourse.dataSourseKey }}</td>
                 <td v-if="displaySettings.showMomentBegin">{{ formatDateTime(datasourse.momentBegin) }}</td>
                 <td v-if="displaySettings.showMomentEnd">{{ formatDateTime(datasourse.momentEnd) }}</td>
